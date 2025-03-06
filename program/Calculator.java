@@ -88,18 +88,22 @@ public class Calculator{
         switch(menuOption){
             case 1:
                 // perform menu option operation
+                System.out.println("You have selected to calculate the area of a Circle");
                 break;
             case 2:
                 // perform menu option operation
+                System.out.println("You have selected to calculate the area of a Rectangle");
+
                 break;
             case 3:
                 // perform menu option operation
+                System.out.println("You have selected to calculate the volume of a Cylinder");
+
                 break;
             case 4:
                 // perform menu option operation
-                break;
-            case 5:
-                // perform menu option operation
+                System.out.println("You have selected to calculate the volume of a Rectangular Prism");
+                
                 break;
             default:
                 break;
