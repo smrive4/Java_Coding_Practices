@@ -29,5 +29,15 @@ public class RectangularPrism{
     public double getVolume(){
         return height * width * length;
     }
+
+    /**
+     * 
+     * @return a string containing the dimensions of a rectangular prisim and it's volume
+     */
+    public String getHistory(){
+        return "Volume of Rectangular Prisim: \nLength: " + this.length + 
+                " \nWidth: " + this.width + " \nHeight: " + this.height + 
+                " \nVolume: " + getVolume();
+    }
     
 }
