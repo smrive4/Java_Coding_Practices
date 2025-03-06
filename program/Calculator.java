@@ -23,7 +23,7 @@ public class Calculator{
             menuOption = getValidMenuOption();
     
             performSelectedOption(menuOption);
-        }while (menuOption != 7);
+        }while (menuOption != 5);
 
         System.out.println("End of Program");
     }
@@ -35,12 +35,11 @@ public class Calculator{
         System.out.println("\n--------------------");
         System.out.println("\tMENU");
         System.out.println("--------------------");
-        System.out.println("1. ");
-        System.out.println("2. ");
-        System.out.println("3. ");
-        System.out.println("4. ");
-        System.out.println("5. ");
-        System.out.println("7. Quit");
+        System.out.println("1. Calculate area of a Circle.");
+        System.out.println("2. Calculate area of a Rectangle.");
+        System.out.println("3. Calculate volume of a Cylinder.");
+        System.out.println("4. Calculate volume of a Rectangular Prism.");
+        System.out.println("5. Quit");
         System.out.println("--------------------");
         System.out.println("Enter option (#-#): ");
     }
@@ -64,7 +63,7 @@ public class Calculator{
         }
         menuOption = scan.nextInt();
         // Ensure menuOption falls within the valid range of options
-        while(menuOption > 7 || menuOption < 1)
+        while(menuOption > 5 || menuOption < 1)
         {
             System.out.println("Option must be one of the listed options");
             displayMenu();
