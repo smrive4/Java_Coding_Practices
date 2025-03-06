@@ -22,7 +22,7 @@ public class Calculator{
             
             menuOption = getValidMenuOption();
     
-            performMenuOption(menuOption);
+            performSelectedOption(menuOption);
         }while (menuOption != 7);
 
         System.out.println("End of Program");
@@ -31,7 +31,7 @@ public class Calculator{
     /**
      * Display Menu Options
      */
-    public static void displayMenu(){
+    private static void displayMenu(){
         System.out.println("\n--------------------");
         System.out.println("\tMENU");
         System.out.println("--------------------");
@@ -50,27 +50,42 @@ public class Calculator{
      * 
      * @return an integer representing a valid menu option
      */
-    public static int getValidMenuOption(){
+    private static int getValidMenuOption(){
         Scanner scan = new Scanner(System.in);
         int menuOption;
-
         String trash;
 
+        // Ensure menuOption is a integer
         while(!scan.hasNextInt())
         {
+            System.out.println("Option must be an number");
             trash = scan.nextLine();
             displayMenu();
         }
         menuOption = scan.nextInt();
+        // Ensure menuOption falls within the valid range of options
+        while(menuOption > 7 || menuOption < 1)
+        {
+            System.out.println("Option must be one of the listed options");
+            displayMenu();
+            // Ensure menuOption is a integer
+            while(!scan.hasNextInt())
+            {
+                System.out.println("Option must be an number");
+                trash = scan.nextLine();
+                displayMenu();
+            }
+            menuOption = scan.nextInt();
+        }
         trash = scan.nextLine();
 
         return menuOption;
     }
 
     /**
-     * 
+     * Perform the option selected by the user.
      */
-    public static void performMenuOption(int menuOption){
+    private static void performSelectedOption(int menuOption){
         switch(menuOption){
             case 1:
                 // perform menu option operation
@@ -86,6 +101,8 @@ public class Calculator{
                 break;
             case 5:
                 // perform menu option operation
+                break;
+            default:
                 break;
         }        
     }
