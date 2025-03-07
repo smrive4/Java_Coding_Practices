@@ -24,6 +24,11 @@ public class Calculator {
     // file path to get history
     static final String historyFileName = "history.ser";
 
+  /**
+   * Gets the history from the history.ser file
+   * 
+   * @return an array list of the user's history
+   */
     @SuppressWarnings("unchecked")
     private static ArrayList<MyMath> retrieveHistory() {
 
@@ -48,10 +53,12 @@ public class Calculator {
      */
     public static void main(String[] args) {
 
+        // get the history first
         history = retrieveHistory();
 
         int menuOption;
 
+        // display the menu and let user select option
         do {
             displayMenu();
 
@@ -61,6 +68,9 @@ public class Calculator {
         } while (menuOption != 6);
 
         System.out.println("End of Program");
+
+        // FIO14-J: Perform proper cleanup at program termination 
+        Runtime.getRuntime().exit(1);
     }
 
     /**
@@ -133,7 +143,7 @@ public class Calculator {
                     scan.nextLine();
                 }                
                 radius = scan.nextDouble(); 
-                // scan.close();
+                
                 Circle circle = new Circle(radius);
                 history.add(circle);
                 System.out.println("The area of the circle is: " + circle.getArea());
@@ -153,7 +163,7 @@ public class Calculator {
                     scan.nextLine();
                 }
                 width = scan.nextDouble();
-                // scan.close();
+                
                 Rectangle rectangle = new Rectangle(length, width);
                 history.add(rectangle);
                 System.out.println("The area of the rectangle is: " + rectangle.getArea());
@@ -173,7 +183,7 @@ public class Calculator {
                     scan.nextLine();
                 }
                 height = scan.nextDouble();
-                // scan.close();
+                
                 Cylinder cylinder = new Cylinder(radius, height);
                 history.add(cylinder);
                 System.out.println("The volume of the cylinder is: " + cylinder.getVolume());
@@ -200,7 +210,7 @@ public class Calculator {
                     scan.nextLine();
                 }
                 width = scan.nextDouble();
-                // scan.close();
+                
                 RectangularPrism rectangular_Prism = new RectangularPrism(height, width, length);
                 history.add(rectangular_Prism);
                 System.out.println("The volume of the rectangular prism is: " + rectangular_Prism.getVolume());
@@ -225,9 +235,12 @@ public class Calculator {
 
                 } catch (IOException e) {
                     System.err.println("Error: " + e.getMessage());
+
+                    // FIO14-J: Perform proper cleanup at program termination 
+                    // Err04-J: Do not complete abruptly from a finally block
                 } finally {
                     try {
-                        // RULE...
+                        // EXP01-J: Do not use null in a case where an object is required 
                         if (objStream != null)
                             objStream.close();
                     } catch (IOException e) {
