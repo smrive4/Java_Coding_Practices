@@ -38,6 +38,6 @@ public class Rectangle extends TwoDimensions {
    */
   @Override
   String getHistory() {
-    return "Area of Rectangle:\nlength: " + length + "\nwidth: " + width + "\narea:" + getArea();
+    return "length: " + length + "\nwidth: " + width + "\narea:" + getArea();
   }
 }
