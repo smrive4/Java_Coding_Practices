@@ -216,40 +216,55 @@ public class Calculator {
                 System.out.println("The volume of the rectangular prism is: " + rectangular_Prism.getVolume());
                 break;
             case 5:
-                // print out history
-                for (MyMath item : history) {
-                    System.out.println(item.getHistory());
-                    System.out.println("\n");
-                }
+                printOutHistory();
                 break;
             case 6:
-                System.out.println("Saving...\n");
-                // save history to file and then exit
-                // serialize obj and write to file
-                FileOutputStream outStream = null;
-                ObjectOutputStream objStream = null;
-                try {
-                    outStream = new FileOutputStream(historyFileName);
-                    objStream = new ObjectOutputStream(outStream);
-                    objStream.writeObject(history);
-
-                } catch (IOException e) {
-                    System.err.println("Error: " + e.getMessage());
-
-                    // FIO14-J: Perform proper cleanup at program termination 
-                    // Err04-J: Do not complete abruptly from a finally block
-                } finally {
-                    try {
-                        // EXP01-J: Do not use null in a case where an object is required 
-                        if (objStream != null)
-                            objStream.close();
-                    } catch (IOException e) {
-                        System.err.println("Error saving to file: " + e);
-                    }
-                }
-                System.out.println("Finished");
+                saveHistory();
+                break;
             default:
                 break;
         }
+    }
+
+    /**
+     * Prints out History
+     */
+    private static void printOutHistory(){
+        // print out history
+        for (MyMath item : history) {
+            System.out.println(item.getHistory());
+            System.out.println("\n");
+        }
+    }
+
+    /**
+     * Save history to file
+     */
+    private static void saveHistory(){
+        System.out.println("Saving...\n");
+        // save history to file and then exit
+        // serialize obj and write to file
+        FileOutputStream outStream = null;
+        ObjectOutputStream objStream = null;
+        try {
+            outStream = new FileOutputStream(historyFileName);
+            objStream = new ObjectOutputStream(outStream);
+            objStream.writeObject(history);
+
+        } catch (IOException e) {
+            System.err.println("Error: " + e.getMessage());
+
+        // FIO14-J: Perform proper cleanup at program termination 
+        // Err04-J: Do not complete abruptly from a finally block
+        } finally {
+            try {
+                // EXP01-J: Do not use null in a case where an object is required 
+                if (objStream != null)
+                    objStream.close();
+            } catch (IOException e) {
+                System.err.println("Error saving to file: " + e);
+            }
+        }
+        System.out.println("Finished");
     }
 }
