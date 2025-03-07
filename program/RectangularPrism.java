@@ -4,8 +4,11 @@
  */
 
 public class RectangularPrism extends ThreeDimensions{
+    /** height of a rectangular prism*/
     private final double height;
+    /** width of a rectangular prism */
     private final double width;
+    /** length of a rectangular prism */
     private final double length;
 
     /**
