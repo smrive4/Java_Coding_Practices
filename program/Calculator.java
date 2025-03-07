@@ -87,7 +87,7 @@ public class Calculator {
         System.out.println("5. View history");
         System.out.println("6. Quit");
         System.out.println("--------------------");
-        System.out.println("Enter option (#-#): ");
+        System.out.println("Enter an option (1-6): ");
     }
 
     /**
@@ -137,12 +137,8 @@ public class Calculator {
             case 1:
                 // perform menu option operation
                 System.out.println("\nYou have selected to calculate the area of a Circle");
-                System.out.print("Please input the radius of the circle: ");
-                while (!scan.hasNextDouble()) { 
-                    System.out.println("Invalid input. Please enter a valid double.");
-                    scan.nextLine();
-                }                
-                radius = scan.nextDouble(); 
+                System.out.print("Please input the radius of the circle: ");             
+                radius = getValidDouble();
                 
                 Circle circle = new Circle(radius);
                 history.add(circle);
@@ -152,17 +148,9 @@ public class Calculator {
                 // perform menu option operation
                 System.out.println("You have selected to calculate the area of a Rectangle");
                 System.out.print("Please input the length of the rectangle: ");
-                while (!scan.hasNextDouble()) { 
-                    System.out.println("Invalid input. Please enter a valid double.");
-                    scan.nextLine();
-                }
-                length = scan.nextDouble();
+                length = getValidDouble();
                 System.out.print("\nPlease input the width of the rectangle: ");
-                while (!scan.hasNextDouble()) { 
-                    System.out.println("Invalid input. Please enter a valid double.");
-                    scan.nextLine();
-                }
-                width = scan.nextDouble();
+                width = getValidDouble();
                 
                 Rectangle rectangle = new Rectangle(length, width);
                 history.add(rectangle);
@@ -172,17 +160,9 @@ public class Calculator {
                 // perform menu option operation
                 System.out.println("You have selected to calculate the volume of a Cylinder");
                 System.out.print("Please input the radius of the cylinder: ");
-                while (!scan.hasNextDouble()) { 
-                    System.out.println("Invalid input. Please enter a valid double.");
-                    scan.nextLine();
-                }
-                radius = scan.nextDouble();
+                radius = getValidDouble();
                 System.out.print("\nPlease input the height of the cylinder: ");
-                while (!scan.hasNextDouble()) { 
-                    System.out.println("Invalid input. Please enter a valid double.");
-                    scan.nextLine();
-                }
-                height = scan.nextDouble();
+                height = getValidDouble();
                 
                 Cylinder cylinder = new Cylinder(radius, height);
                 history.add(cylinder);
@@ -193,23 +173,11 @@ public class Calculator {
                 // perform menu option operation
                 System.out.println("You have selected to calculate the volume of a Rectangular Prism");
                 System.out.print("Please input the height of the rectangular prism: ");
-                while (!scan.hasNextDouble()) { 
-                    System.out.println("Invalid input. Please enter a valid double.");
-                    scan.nextLine();
-                }
-                height = scan.nextDouble();
+                height = getValidDouble();
                 System.out.print("\nPlease input the length of the rectangular prism: ");
-                while (!scan.hasNextDouble()) { 
-                    System.out.println("Invalid input. Please enter a valid double.");
-                    scan.nextLine();
-                }
-                length = scan.nextDouble();
+                length = getValidDouble();
                 System.out.print("\nPlease input the width of the rectangular prism: ");
-                while (!scan.hasNextDouble()) { 
-                    System.out.println("Invalid input. Please enter a valid double.");
-                    scan.nextLine();
-                }
-                width = scan.nextDouble();
+                width = getValidDouble();
                 
                 RectangularPrism rectangular_Prism = new RectangularPrism(height, width, length);
                 history.add(rectangular_Prism);
