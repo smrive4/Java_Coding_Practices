@@ -3,10 +3,13 @@
  * Rectangular Prism Class
  */
 
-public class RectangularPrism{
-    private double height;
-    private double width;
-    private double length;
+public class RectangularPrism extends ThreeDimensions{
+    /** height of a rectangular prism*/
+    private final double height;
+    /** width of a rectangular prism */
+    private final double width;
+    /** length of a rectangular prism */
+    private final double length;
 
     /**
      * Constructor
@@ -26,8 +29,21 @@ public class RectangularPrism{
      * 
      * @return the volume of a rectangular prism
      */
+    @Override
     public double getVolume(){
         return height * width * length;
+    }
+
+    /**
+     * Method to return information about a Rectangular prisim object
+     * 
+     * @return a string containing the dimensions of a rectangular prisim and it's volume
+     */
+    @Override
+    public String getHistory(){
+        return "Volume of Rectangular Prisim: \nLength: " + this.length + 
+                " \nWidth: " + this.width + " \nHeight: " + this.height + 
+                " \nVolume: " + getVolume();
     }
     
 }
