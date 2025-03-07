@@ -236,6 +236,23 @@ public class Calculator {
             System.out.println("\n");
         }
     }
+    
+    /**
+     * Get a valid double from the user
+     */
+    private static double getValidDouble(){
+        Scanner scan = new Scanner(System.in);
+        double validDouble;
+        String trash;
+
+        while (!scan.hasNextDouble()) { 
+            System.out.println("Invalid input. Please enter a valid number: ");
+            scan.nextLine();
+        }                
+        validDouble = scan.nextDouble();
+
+        return validDouble;
+    }
 
     /**
      * Save history to file
