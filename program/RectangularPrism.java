@@ -3,7 +3,7 @@
  * Rectangular Prism Class
  */
 
-public class RectangularPrism{
+public class RectangularPrism extends ThreeDimensions{
     private double height;
     private double width;
     private double length;
@@ -28,6 +28,11 @@ public class RectangularPrism{
      */
     public double getVolume(){
         return height * width * length;
+    }
+
+    @Override
+    String getHistory() {
+        return "h" + height + "w" + width + "l" +length + "s" + getVolume();
     }
     
 }
