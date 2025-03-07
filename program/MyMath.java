@@ -3,10 +3,12 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
+
 public abstract class MyMath implements Serializable{
 
   abstract String getHistory();
 
+  // SER01-J: Do not deviate from the proper signatures of serialization methods. 
   /**
    * Writes the state of the object into a stream. Uses Java's built in serialization
    * 
