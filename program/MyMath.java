@@ -3,9 +3,15 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
+/**
+ * MyMath an abstract class, superclass to ThreeDimensions and TwoDimensions
+ */
 
 public abstract class MyMath implements Serializable{
 
+  /**
+   * Method to get information of an object 
+   */
   abstract String getHistory();
 
   // SER01-J: Do not deviate from the proper signatures of serialization methods. 
