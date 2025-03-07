@@ -4,6 +4,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -31,7 +32,7 @@ public class Calculator {
     @SuppressWarnings("unchecked")
     private static ArrayList<MyMath> retrieveHistory() {
 
-        ArrayList<MyMath> deserializedObj = new ArrayList<>();
+        ArrayList<MyMath> deserializedObj = new ArrayList<MyMath>();
 
         // open history.ser and get the file
         try (FileInputStream inStream = new FileInputStream(historyFileName);
@@ -86,7 +87,7 @@ public class Calculator {
         System.out.println("5. View history");
         System.out.println("6. Quit");
         System.out.println("--------------------");
-        System.out.println("Enter an option (1-6): ");
+        System.out.println("Enter option (#-#): ");
     }
 
     /**
@@ -107,6 +108,7 @@ public class Calculator {
         }
         menuOption = scan.nextInt();
         // Ensure menuOption falls within the valid range of options
+        //MET00-J: validate method arguments
         while (menuOption > 6 || menuOption < 1) {
             System.out.println("Option must be one of the listed options");
             displayMenu();
@@ -127,18 +129,100 @@ public class Calculator {
      * Perform the option selected by the user.
      */
     private static void performSelectedOption(int menuOption) {
+        Scanner scan = new Scanner(System.in);
+        double radius;
+        double height;
+        double length;
+        double width;
+
+        //ERR08-J Do not catch nullptrexception or any of its ancestors
+        if(history == null)
+        {
+            System.out.println("history is null when trying to enter in items");
+        }
         switch (menuOption) {
             case 1:
-                calcCircleArea();
+                // perform menu option operation
+                System.out.println("\nYou have selected to calculate the area of a Circle");
+                System.out.print("Please input the radius of the circle: ");
+                //MET01-J never use assertions to validate method arguments
+                while (!scan.hasNextDouble()) { 
+                    System.out.println("Invalid input. Please enter a valid double.");
+                    scan.nextLine();
+                }                
+                radius = scan.nextDouble(); 
+                
+                Circle circle = new Circle(radius);
+               
+                history.add(circle);
+                System.out.println("The area of the circle is: " + circle.getArea());
                 break;
             case 2:
-                calcRectangleArea();
+                // perform menu option operation
+                System.out.println("You have selected to calculate the area of a Rectangle");
+                System.out.print("Please input the length of the rectangle: ");
+                while (!scan.hasNextDouble()) { 
+                    System.out.println("Invalid input. Please enter a valid double.");
+                    scan.nextLine();
+                }
+                length = scan.nextDouble();
+                System.out.print("\nPlease input the width of the rectangle: ");
+                while (!scan.hasNextDouble()) { 
+                    System.out.println("Invalid input. Please enter a valid double.");
+                    scan.nextLine();
+                }
+                width = scan.nextDouble();
+                
+                Rectangle rectangle = new Rectangle(length, width);
+                history.add(rectangle);
+                System.out.println("The area of the rectangle is: " + rectangle.getArea());
                 break;
             case 3:
-                calcCylinderVolume();
+                // perform menu option operation
+                System.out.println("You have selected to calculate the volume of a Cylinder");
+                System.out.print("Please input the radius of the cylinder: ");
+                while (!scan.hasNextDouble()) { 
+                    System.out.println("Invalid input. Please enter a valid double.");
+                    scan.nextLine();
+                }
+                radius = scan.nextDouble();
+                System.out.print("\nPlease input the height of the cylinder: ");
+                while (!scan.hasNextDouble()) { 
+                    System.out.println("Invalid input. Please enter a valid double.");
+                    scan.nextLine();
+                }
+                height = scan.nextDouble();
+                
+                Cylinder cylinder = new Cylinder(radius, height);
+                history.add(cylinder);
+                System.out.println("The volume of the cylinder is: " + cylinder.getVolume());
+
                 break;
             case 4:
-                calcRectPrismVolume();
+                // perform menu option operation
+                System.out.println("You have selected to calculate the volume of a Rectangular Prism");
+                System.out.print("Please input the height of the rectangular prism: ");
+                while (!scan.hasNextDouble()) { 
+                    System.out.println("Invalid input. Please enter a valid double.");
+                    scan.nextLine();
+                }
+                height = scan.nextDouble();
+                System.out.print("\nPlease input the length of the rectangular prism: ");
+                while (!scan.hasNextDouble()) { 
+                    System.out.println("Invalid input. Please enter a valid double.");
+                    scan.nextLine();
+                }
+                length = scan.nextDouble();
+                System.out.print("\nPlease input the width of the rectangular prism: ");
+                while (!scan.hasNextDouble()) { 
+                    System.out.println("Invalid input. Please enter a valid double.");
+                    scan.nextLine();
+                }
+                width = scan.nextDouble();
+                
+                RectangularPrism rectangular_Prism = new RectangularPrism(height, width, length);
+                history.add(rectangular_Prism);
+                System.out.println("The volume of the rectangular prism is: " + rectangular_Prism.getVolume());
                 break;
             case 5:
                 printOutHistory();
@@ -152,83 +236,29 @@ public class Calculator {
     }
 
     /**
-     * Perform calculating area of a Circle option
-     */
-    private static void calcCircleArea(){
-        double radius;
-
-        System.out.println("\nYou have selected to calculate the area of a Circle");
-        System.out.print("Please input the radius of the circle: ");             
-        radius = getValidDouble();
-        
-        Circle circle = new Circle(radius);
-        history.add(circle);
-        System.out.println("The area of the circle is: " + circle.getArea());
-    }
-
-    /**
-     * Perform calculating area of a Rectangle Option
-     */
-    private static void calcRectangleArea(){
-        double length;
-        double width;
-
-        System.out.println("You have selected to calculate the area of a Rectangle");
-        System.out.print("Please input the length of the rectangle: ");
-        length = getValidDouble();
-        System.out.print("\nPlease input the width of the rectangle: ");
-        width = getValidDouble();
-        
-        Rectangle rectangle = new Rectangle(length, width);
-        history.add(rectangle);
-        System.out.println("The area of the rectangle is: " + rectangle.getArea());
-    }
-
-    /**
-     * Perform calculating volume of a Cylinder option
-     */
-    private static void calcCylinderVolume(){
-        double radius;
-        double height;
-
-        System.out.println("You have selected to calculate the volume of a Cylinder");
-        System.out.print("Please input the radius of the cylinder: ");
-        radius = getValidDouble();
-        System.out.print("\nPlease input the height of the cylinder: ");
-        height = getValidDouble();
-        
-        Cylinder cylinder = new Cylinder(radius, height);
-        history.add(cylinder);
-        System.out.println("The volume of the cylinder is: " + cylinder.getVolume());
-    }
-
-    /**
-     * Perform calculating volume of a Rectangular Prism option
-     */
-    private static void calcRectPrismVolume(){
-        double height;
-        double length;
-        double width;
-
-        System.out.println("You have selected to calculate the volume of a Rectangular Prism");
-        System.out.print("Please input the height of the rectangular prism: ");
-        height = getValidDouble();
-        System.out.print("\nPlease input the length of the rectangular prism: ");
-        length = getValidDouble();
-        System.out.print("\nPlease input the width of the rectangular prism: ");
-        width = getValidDouble();
-        
-        RectangularPrism rectangular_Prism = new RectangularPrism(height, width, length);
-        history.add(rectangular_Prism);
-        System.out.println("The volume of the rectangular prism is: " + rectangular_Prism.getVolume());
-    }
-
-    /**
      * Prints out History
      */
     private static void printOutHistory(){
         // print out history
         for (MyMath item : history) {
+            //OBJ09-J compare classes, not class names
+            //uses the classes of the objects to correctly label the shapes
+            if(item.getClass().equals(Circle.class))
+            {
+                System.out.println("Area of circle:");
+            }
+            else if(item.getClass().equals(Cylinder.class))
+            {
+                System.out.println("Area of cylinder:");
+            }
+            else if(item.getClass().equals(Rectangle.class))
+            {
+                System.out.println("Area of rectangle:");
+            }
+            else if(item.getClass().equals(RectangularPrism.class))
+            {
+                System.out.println("Area of rectangular prism:");
+            }
             System.out.println(item.getHistory());
             System.out.println("\n");
         }
@@ -260,6 +290,7 @@ public class Calculator {
         // serialize obj and write to file
         FileOutputStream outStream = null;
         ObjectOutputStream objStream = null;
+        //F1O02-J detect and handle file errors
         try {
             outStream = new FileOutputStream(historyFileName);
             objStream = new ObjectOutputStream(outStream);
