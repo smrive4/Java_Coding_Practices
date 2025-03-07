@@ -34,10 +34,10 @@ public class Rectangle extends TwoDimensions {
   /**
    * Method to return information of a Rectangle object
    * 
-   * @return a string containing the legnth, width, and area of a rectangle
+   * @return a string containing the length, width, and area of a rectangle
    */
   @Override
   String getHistory() {
-    return "Area of circle calculated:\nradius: " + length + "\nresult: " + getArea();
+    return "Area of Rectangle:\nlength: " + length + "\nwidth: " + width + "\narea:" + getArea();
   }
 }

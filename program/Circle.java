@@ -33,6 +33,6 @@ public class Circle extends TwoDimensions {
    */
   @Override
   public String getHistory() {
-    return "Area of circle calculated:\nradius: " + radius + "\nresult: " + getArea();
+    return "Area of Circle:\nradius: " + radius + "\narea: " + getArea();
   }
 }
