@@ -1,19 +1,42 @@
-public class Cylinder extends ThreeDimensions {
-    double radius;
-    double height;
 
+/**
+ * Cylinder Class
+ */
+
+public class Cylinder extends ThreeDimensions {
+    /** radius of a cylinder */
+    private final double radius;
+    /** height of a cylinder */
+    private final double height;
+
+    /**
+     * Constructor
+     * 
+     * @param radius radius of the cylinder
+     * @param height height of the cylinder
+     */
     public Cylinder(double radius, double height) {
       this.radius = radius;
       this.height = height;
     }
   
+    /**
+     * Method to return volume of the cylinder
+     * 
+     * @return the volume of a cylinder
+     */
     @Override
-    double getVolume() {
+    public double getVolume() {
       return Math.PI * (Math.pow(radius, 2)) * height;
     }
-  
+
+    /**
+     * Method to return information about a Cylinder object
+     * 
+     * @return a string containing the radius of the cylinder and its volume
+     */
     @Override
-    String getHistory() {
+    public String getHistory() {
       return "Area of circle calculated:\nradius: " + radius + "\nresult: " + getVolume();
     }
 }
