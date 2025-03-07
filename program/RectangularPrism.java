@@ -41,7 +41,7 @@ public class RectangularPrism extends ThreeDimensions{
      */
     @Override
     public String getHistory(){
-        return "Volume of Rectangular Prisim: \nLength: " + this.length + 
+        return "Volume of Rectangular Prism: \nLength: " + this.length + 
                 " \nWidth: " + this.width + " \nHeight: " + this.height + 
                 " \nVolume: " + getVolume();
     }
