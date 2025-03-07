@@ -5,7 +5,7 @@
 
 public class Circle extends TwoDimensions {
   /** radius of a circle*/
-  private double radius;
+  private final double radius;
 
   /**
    * Constructor
