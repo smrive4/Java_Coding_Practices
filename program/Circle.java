@@ -5,8 +5,9 @@
 
 public class Circle extends TwoDimensions {
   /** radius of a circle*/
+  //OBJ10-J: do not use public static nonfinal fields
   private final double radius;
-
+  private static final double circumference = Math.PI;
   /**
    * Constructor
    * 
@@ -21,9 +22,10 @@ public class Circle extends TwoDimensions {
    * 
    * @return area of a circle
    */
+  //MET05-J ensure constructors don't call overridable methods
   @Override
   public double getArea() {
-    return Math.PI * (Math.pow(radius, 2));
+    return circumference * (Math.pow(radius, 2));
   }
 
   /**
@@ -33,6 +35,6 @@ public class Circle extends TwoDimensions {
    */
   @Override
   public String getHistory() {
-    return "Area of Circle:\nradius: " + radius + "\narea: " + getArea();
+    return "radius: " + radius + "\narea: " + getArea();
   }
 }
