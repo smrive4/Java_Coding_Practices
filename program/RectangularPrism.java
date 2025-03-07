@@ -14,9 +14,9 @@ public class RectangularPrism extends ThreeDimensions{
     /**
      * Constructor
      * 
-     * @param height height of a rectangular prisim
-     * @param width width of a rectangular prisim
-     * @param length lenght of a rectangular prisim
+     * @param height height of a rectangular prism
+     * @param width width of a rectangular prism
+     * @param length length of a rectangular prism
      */
     public RectangularPrism(double height, double width, double length) {
         this.height = height;
@@ -35,9 +35,9 @@ public class RectangularPrism extends ThreeDimensions{
     }
 
     /**
-     * Method to return information about a Rectangular prisim object
+     * Method to return information about a Rectangular prism object
      * 
-     * @return a string containing the dimensions of a rectangular prisim and it's volume
+     * @return a string containing the dimensions of a rectangular prism and it's volume
      */
     @Override
     public String getHistory(){

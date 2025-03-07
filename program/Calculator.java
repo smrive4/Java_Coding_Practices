@@ -1,4 +1,11 @@
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -7,23 +14,51 @@ import java.util.Scanner;
  * @author Gavin Garcia
  * @author Daniel Golladay
  * @author Carl Ghess
- * @author Saul Rivera 
+ * @author Saul Rivera
  */
 
-public class Calculator{
+public class Calculator {
+
+    // history of calculations
+    static ArrayList<MyMath> history = null;
+    // file path to get history
+    static final String historyFileName = "history.ser";
+
+    @SuppressWarnings("unchecked")
+    private static ArrayList<MyMath> retrieveHistory() {
+
+        ArrayList<MyMath> deserializedObj = new ArrayList<MyMath>();
+
+        // open history.ser and get the file
+        try (FileInputStream inStream = new FileInputStream(historyFileName);
+                ObjectInputStream objStream = new ObjectInputStream(inStream)) {
+
+            // get the object and cast it
+            deserializedObj = (ArrayList<MyMath>) objStream.readObject();
+
+        } catch (IOException | ClassNotFoundException e) {
+            System.err.println("Error: retrieving history: " + e.getMessage());
+        }
+
+        return deserializedObj;
+    }
+
     /**
      * Main Driver
      */
     public static void main(String[] args) {
+
+        history = retrieveHistory();
+
         int menuOption;
 
-        do{
+        do {
             displayMenu();
-            
+
             menuOption = getValidMenuOption();
-    
+
             performSelectedOption(menuOption);
-        }while (menuOption != 5);
+        } while (menuOption != 6);
 
         System.out.println("End of Program");
     }
@@ -31,7 +66,7 @@ public class Calculator{
     /**
      * Display Menu Options
      */
-    private static void displayMenu(){
+    private static void displayMenu() {
         System.out.println("\n--------------------");
         System.out.println("\tMENU");
         System.out.println("--------------------");
@@ -39,7 +74,8 @@ public class Calculator{
         System.out.println("2. Calculate area of a Rectangle.");
         System.out.println("3. Calculate volume of a Cylinder.");
         System.out.println("4. Calculate volume of a Rectangular Prism.");
-        System.out.println("5. Quit");
+        System.out.println("5. View history");
+        System.out.println("6. Quit");
         System.out.println("--------------------");
         System.out.println("Enter option (#-#): ");
     }
@@ -49,27 +85,24 @@ public class Calculator{
      * 
      * @return an integer representing a valid menu option
      */
-    private static int getValidMenuOption(){
+    private static int getValidMenuOption() {
         Scanner scan = new Scanner(System.in);
         int menuOption;
         String trash;
 
         // Ensure menuOption is a integer
-        while(!scan.hasNextInt())
-        {
+        while (!scan.hasNextInt()) {
             System.out.println("Option must be an number");
             trash = scan.nextLine();
             displayMenu();
         }
         menuOption = scan.nextInt();
         // Ensure menuOption falls within the valid range of options
-        while(menuOption > 5 || menuOption < 1)
-        {
+        while (menuOption > 6 || menuOption < 1) {
             System.out.println("Option must be one of the listed options");
             displayMenu();
             // Ensure menuOption is a integer
-            while(!scan.hasNextInt())
-            {
+            while (!scan.hasNextInt()) {
                 System.out.println("Option must be an number");
                 trash = scan.nextLine();
                 displayMenu();
@@ -84,13 +117,13 @@ public class Calculator{
     /**
      * Perform the option selected by the user.
      */
-    private static void performSelectedOption(int menuOption){
+    private static void performSelectedOption(int menuOption) {
         Scanner scan = new Scanner(System.in);
         double radius;
         double height;
         double length;
         double width;
-        switch(menuOption){
+        switch (menuOption) {
             case 1:
                 // perform menu option operation
                 System.out.println("\nYou have selected to calculate the area of a Circle");
@@ -102,6 +135,7 @@ public class Calculator{
                 radius = scan.nextDouble(); 
                 scan.close();
                 Circle circle = new Circle(radius);
+                history.add(circle);
                 System.out.println("The area of the circle is: " + circle.getArea());
                 break;
             case 2:
@@ -121,6 +155,7 @@ public class Calculator{
                 width = scan.nextDouble();
                 scan.close();
                 Rectangle rectangle = new Rectangle(length, width);
+                history.add(rectangle);
                 System.out.println("The area of the rectangle is: " + rectangle.getArea());
                 break;
             case 3:
@@ -151,10 +186,41 @@ public class Calculator{
                 width = scan.nextDouble();
                 scan.close();
                 RectangularPrism rectangular_Prism = new RectangularPrism(height, width, length);
+                history.add(rectangular_Prism);
                 System.out.println("The volume of the rectangular prism is: " + rectangular_Prism.getVolume());
                 break;
+            case 5:
+                // print out history
+                for (MyMath item : history) {
+                    System.out.println(item.getHistory());
+                    System.out.println("\n");
+                }
+                break;
+            case 6:
+                System.out.println("Saving...\n");
+                // save history to file and then exit
+                // serialize obj and write to file
+                FileOutputStream outStream = null;
+                ObjectOutputStream objStream = null;
+                try {
+                    outStream = new FileOutputStream(historyFileName);
+                    objStream = new ObjectOutputStream(outStream);
+                    objStream.writeObject(history);
+
+                } catch (IOException e) {
+                    System.err.println("Error: " + e.getMessage());
+                } finally {
+                    try {
+                        // RULE...
+                        if (objStream != null)
+                            objStream.close();
+                    } catch (IOException e) {
+                        System.err.println("Error saving to file: " + e);
+                    }
+                }
+                System.out.println("Finished");
             default:
                 break;
-        }        
+        }
     }
 }
