@@ -1,7 +1,7 @@
 public class Rectangle extends TwoDimensions {
 
   double length, width;
-  public Rectangle(int length, int width) {
+  public Rectangle(double length, double width) {
     this.length = length;
     this.width = width;
   }
