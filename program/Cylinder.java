@@ -37,7 +37,7 @@ public class Cylinder extends ThreeDimensions {
      */
     @Override
     public String getHistory(){
-        return "Volume of Cylinder: \nRadius: " + radius + 
+        return "Radius: " + radius + 
                 " \nHeight: : " + height +  
                 " \nVolume: " + getVolume();
     }
