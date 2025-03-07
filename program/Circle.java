@@ -1,7 +1,7 @@
 public class Circle extends TwoDimensions {
 
   double radius;
-  public Circle(int radius) {
+  public Circle(double radius) {
     this.radius = radius;
   }
 
