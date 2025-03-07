@@ -36,7 +36,9 @@ public class Cylinder extends ThreeDimensions {
      * @return a string containing the radius of the cylinder and its volume
      */
     @Override
-    public String getHistory() {
-      return "Area of circle calculated:\nradius: " + radius + "\nresult: " + getVolume();
+    public String getHistory(){
+        return "Volume of Cylinder: \nRadius: " + radius + 
+                " \nHeight: : " + height +  
+                " \nVolume: " + getVolume();
     }
 }
