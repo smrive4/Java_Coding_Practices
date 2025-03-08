@@ -1,0 +1,27 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
+public class FileReader {
+    public static void main(String[] args) {
+        readFile("nonexistent.txt"); // Trying to read a file that doesn't exist
+    }
+
+    public static void readFile(String filename) {
+        try {
+            File file = new File(filename);
+            Scanner scanner = new Scanner(file);
+            while (scanner.hasNextLine()) {
+                System.out.println(scanner.nextLine());
+            }
+            scanner.close();
+        } catch (FileNotFoundException e) {
+            System.err.println("Error: File '" + filename + "' not found. Logging the error and continuing.");
+            logError(e); // Logging the error
+        }
+    }
+
+    public static void logError(Exception e) {
+        System.err.println("Logged Error: " + e.getMessage());
+    }
+}
