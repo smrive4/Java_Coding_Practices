@@ -1,0 +1,23 @@
+mport java.util.Scanner;
+
+public class InputValidation {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int number = 0;
+        boolean validInput = false;
+        // Prompt the user to enter a valid integer
+        while (!validInput) {
+            System.out.print("Please enter a valid integer: ");
+            // validate the argument
+            if (scanner.hasNextInt()) {
+                number = scanner.nextInt();
+                validInput = true;  
+            } else {
+                System.out.println("That's not a valid integer. Please try again.");
+                scanner.next();  
+            }
+        }
+        System.out.println("You entered the valid integer: " + number);
+        scanner.close();
+    }
+}
