@@ -18,6 +18,8 @@ import java.util.Scanner;
 
 public class Calculator {
 
+    // OBJ08-J: Does not contain nested class, therefore does not expose them.
+
     // history of calculations
     static ArrayList<MyMath> history = null;
     // file path to get history
