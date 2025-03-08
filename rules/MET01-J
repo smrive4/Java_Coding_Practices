@@ -1,0 +1,26 @@
+public class MethodArgumentValidation {
+    // Method that accepts a number and validates if it is positive
+    public static void checkPositiveNumber(int number) {
+        if (number <= 0) {
+            // If the number is not positive, throw an IllegalArgumentException
+            throw new IllegalArgumentException("The number must be positive.");
+        }
+        System.out.println("The number is valid: " + number);
+    }
+    public static void main(String[] args) {
+        int number = -5;
+
+        // Call the method and handle the exception if it occurs
+        try {
+            checkPositiveNumber(number);
+        } catch (IllegalArgumentException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+        number = 10;
+        try {
+            checkPositiveNumber(number);
+        } catch (IllegalArgumentException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
+}
