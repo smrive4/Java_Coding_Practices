@@ -1,0 +1,27 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.Scanner;
+public class FileErrorHandling {
+
+    public static void main(String[] args) {
+        // Path to the file to read from
+        File file = new File("example.txt");
+
+        try {
+            // Attempt to open the file and read from it
+            Scanner fileScanner = new Scanner(file);
+            while (fileScanner.hasNextLine()) {
+                System.out.println(fileScanner.nextLine());
+            }
+            fileScanner.close();
+            //detect and handle file errors
+        } catch (FileNotFoundException e) {
+            System.out.println("Error: The file was not found.");
+        } catch (IOException e) {
+            System.out.println("Error: An I/O error occurred while reading the file.");
+        } catch (Exception e) {
+            System.out.println("Error: An unexpected error occurred.");
+        }
+    }
+}
