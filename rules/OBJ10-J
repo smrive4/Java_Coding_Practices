@@ -1,0 +1,18 @@
+public class Multiply {
+
+    // Define a public static final integer equal to 2
+    public static final int MULTIPLIER = 2;
+
+    // Method that accepts an input and returns it multiplied by 2
+    public static int multiplyBy2(int number) {
+        return number * MULTIPLIER;
+    }
+
+    public static void main(String[] args) {
+        int input = 5;
+        int result = multiplyBy2(input);
+       
+        // Print the result
+        System.out.println("The result of multiplying " + input + " by 2 is: " + result);
+    }
+}
