@@ -1,0 +1,27 @@
+class Cat {
+    private String name;
+    public Cat(String name) {
+        this.name = name;
+    }
+    public void meow() {
+        System.out.println(name + " says: Meow!");
+    }
+}
+class Dog {
+    private String name;
+    public Dog(String name) {
+        this.name = name;
+    }
+    public void bark() {
+        System.out.println(name + " says: Woof!");
+    }
+}
+public class PetTest {
+    public static void main(String[] args) {
+        Cat cat = new Cat("Whiskers");
+        Dog dog = new Dog("Buddy");
+
+        cat.meow();
+        dog.bark();
+    }
+}
