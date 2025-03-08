@@ -1,0 +1,21 @@
+public class NullCheck {
+
+    // Method that checks if a string is null
+    public static void checkString(String str) {
+        if (str == null) {
+            System.out.println("The string is null.");
+        } else {
+            System.out.println("The string is: " + str);
+        }
+    }
+
+    public static void main(String[] args) {
+        // Test cases
+        String str1 = null;
+        String str2 = "Hello, World!";
+
+        // Check if the strings are null
+        checkString(str1);  // This will print "The string is null."
+        checkString(str2);  // This will print "The string is: Hello, World!"
+    }
+}
