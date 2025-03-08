@@ -1,0 +1,28 @@
+class Car {
+    private String model;
+
+    // Constructor
+    public Car(String model) {
+        this.model = model;
+    }
+
+    // Getter method
+    public String getModel() {
+        return model;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        // Creating two Car objects
+        Car car1 = new Car("Toyota");
+        Car car2 = new Car("Honda");
+
+        // Check if the classes of car1 and car2 are the same in a safe way
+        if (car1.getClass() == car2.getClass()) {
+            System.out.println("Both objects are of the same class.");
+        } else {
+            System.out.println("The objects are of different classes.");
+        }
+    }
+}
